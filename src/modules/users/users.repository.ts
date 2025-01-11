@@ -7,6 +7,7 @@ import { DataSource, Repository } from 'typeorm';
 import { UserDto } from './users.dto';
 import * as bcrypt from 'bcrypt'
 import { ChangePasswordDto } from './changePassword.dto';
+import { SetPasswordDto } from './setPassword.dto';
 
 @Injectable()
 export class UsersRepository {
@@ -74,6 +75,42 @@ export class UsersRepository {
         throw new HttpException(error.message, HttpStatus.NOT_FOUND)
       }
       throw new HttpException('Error updating profile', HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  async setPassword(id: UUID, setPasswordDto: SetPasswordDto){
+    try{
+      const { newPassword, confirmPassword } = setPasswordDto
+
+      const user = await this.usersRepository.findOne({where: {id}})
+      if(!user){
+        throw new HttpException(
+          `User with id: ${id} not found`,
+          HttpStatus.NOT_FOUND
+        )
+      }
+
+      if(newPassword !== confirmPassword){
+        throw new HttpException(
+          'New password and confirmation password do not match',
+          HttpStatus.BAD_REQUEST
+        )
+      }
+
+      const salt = await bcrypt.genSalt(10)
+      user.password = await bcrypt.hash(newPassword, salt)
+
+      await this.usersRepository.save(user)
+      return 'Password changed successfully'
+    }
+    catch(error){
+      if(error instanceof NotFoundException || error instanceof BadRequestException){
+        throw new HttpException(error.message, HttpStatus.BAD_REQUEST)
+      }
+      throw new HttpException(
+        'Error resetting password',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      )
     }
   }
 
