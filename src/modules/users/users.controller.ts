@@ -22,22 +22,22 @@ export class UsersController {
 
   @Get('email')
   getUserByEmail(@Param('email') email: string){
-    return this.getUserByEmail(email)
+    return this.usersService.getUserByEmail(email)
   }
   
   @Get(':id')
   getUserById(@Param('id', ParseUUIDPipe) id: UUID){
-    return this.getUserById(id)
+    return this.usersService.getUserById(id)
   }
 
   @Post()
   createUser(@Body() user: UserDto){
-    return this.createUser(user)
+    return this.usersService.createUser(user)
   }
 
   @Put('profile/:id')
   updateUser(@Param('id', ParseUUIDPipe) id: UUID, @Body() updateProduleDto: UserDto){
-    return this.updateUser(id, updateProduleDto)
+    return this.usersService.updateUser(id, updateProduleDto)
   }
 
   @Put('change-password/:id')
@@ -53,11 +53,11 @@ export class UsersController {
     @Param('id', ParseUUIDPipe) id: UUID,
     @Body() setPasswordDto: SetPasswordDto,
   ){
-    this.usersService.setPassword(id, setPasswordDto)
+    return this.usersService.setPassword(id, setPasswordDto)
   }
 
   @Delete()
   deleteUser(@Param('id', ParseUUIDPipe) id: UUID){
-    return this.deleteUser(id)
+    return this.usersService.deleteUser(id)
   }
 }
