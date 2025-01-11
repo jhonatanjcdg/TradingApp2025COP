@@ -123,4 +123,26 @@ export class UsersRepository {
       )
     }
   }
+
+  async deleteUser(id: UUID): Promise<string>{
+    try{
+      const  result = await this.usersRepository.delete(id)
+      if(result.affected === 0){
+        throw new HttpException(
+          `User with ${id} not exists`,
+          HttpStatus.NOT_FOUND,
+        )
+      }
+      return `User with id: ${id} deleted`
+    }
+    catch(error){
+      if(error instanceof NotFoundException){
+        throw new HttpException(error.message, HttpStatus.NOT_FOUND)
+      }
+      throw new HttpException(
+        'Error deleting user',
+        HttpStatus.INTERNAL_SERVER_ERROR
+      )
+    }
+  }
 }
