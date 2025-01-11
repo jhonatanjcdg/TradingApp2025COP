@@ -4,6 +4,8 @@ import { UsersService } from './users.service';
 import { ApiTags } from '@nestjs/swagger';
 import { UUID } from 'crypto';
 import { UserDto } from './users.dto';
+import { ChangePasswordDto } from './changePassword.dto';
+import { SetPasswordDto } from './setPassword.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -36,6 +38,22 @@ export class UsersController {
   @Put('profile/:id')
   updateUser(@Param('id', ParseUUIDPipe) id: UUID, @Body() updateProduleDto: UserDto){
     return this.updateUser(id, updateProduleDto)
+  }
+
+  @Put('change-password/:id')
+  async changePassword(
+    @Param('id', ParseUUIDPipe) id: UUID,
+    @Body() changePassword: ChangePasswordDto
+  ){
+    return this.usersService.changePassword(id, changePassword)
+  }
+
+  @Put('set-password/id')
+  async setPassword(
+    @Param('id', ParseUUIDPipe) id: UUID,
+    @Body() setPasswordDto: SetPasswordDto,
+  ){
+    this.usersService.setPassword(id, setPasswordDto)
   }
 
   @Delete()
