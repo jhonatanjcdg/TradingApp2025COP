@@ -35,6 +35,10 @@ export class User{
     })
     email: string
 
+    /**
+     * La contraseña debe ser mayor a 8 caracteres y debe contener al menos una letra minúscula, una letra mayúscula, un número y uno de los siguientes caracteres especiales: !@#$%^&*.,
+     * @example Test123.
+     */
     @Column({
         type: "varchar",
         length: '500',
