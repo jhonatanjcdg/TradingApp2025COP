@@ -18,8 +18,12 @@ export class UsersService{
         return this.usersRepository.getUserById(id)
     }
 
-    getUserByEmail(id: UUID){
-        return this.usersRepository.getUserByEmail(id)
+    getUserByEmail(email: string){
+        return this.usersRepository.getUserByEmail(email)
+    }
+
+    createUser(user: UserDto){
+        return this.usersRepository.createUser(user)
     }
 
     updateUser(id: UUID, updateProfileDto: UserDto){

@@ -25,7 +25,7 @@ export class User{
 
     /**
      * Debe ser un email valido
-     * @example  test@test.co
+     * @example  test@test.com
      */
     @Column({
         type: 'varchar',
@@ -46,6 +46,10 @@ export class User{
     })
     password: string
 
+    /**
+     * Balance que tiene cada persona, por defecto es 0
+     * @example 0
+     */
     @Column({
         type: 'decimal',
         precision: 10,
