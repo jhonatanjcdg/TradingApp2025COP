@@ -21,10 +21,24 @@ export class UsersRepository {
   }
 
   async getUserById(id: UUID){
-    return await {}
+    const user: User = await this.usersRepository.findOne({
+      where: {id},
+      // relations: {}
+    })
+    if(!user){
+      throw new NotFoundException('User not found')
+    }
+    return user
   }
 
   async getUserByEmail(mail: string) /* User */{
-    return await {}
+    const user: User = await this.usersRepository.findOne({
+      where: {},
+      // relations: {}
+    })
+    if(!user){
+      throw new NotFoundException('User not found')
+    }
+    return user
   }
 }
