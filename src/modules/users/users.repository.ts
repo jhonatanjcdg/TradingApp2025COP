@@ -4,10 +4,10 @@ import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { User } from './users.entity';
 import { DataSource, Repository } from 'typeorm';
-import { UserDto } from './users.dto';
+import { UserDto } from './dtos/users.dto';
 import * as bcrypt from 'bcrypt'
-import { ChangePasswordDto } from './changePassword.dto';
-import { SetPasswordDto } from './setPassword.dto';
+import { ChangePasswordDto } from './dtos/changePassword.dto';
+import { SetPasswordDto } from './dtos/setPassword.dto';
 
 @Injectable()
 export class UsersRepository {
