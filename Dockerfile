@@ -11,6 +11,7 @@ RUN npm install
 # Copia el resto del código
 COPY . .
 
+RUN npm uninstall bcrypt
 RUN npm install bcrypt
 
 # Reinstala bcrypt dentro del contenedor
