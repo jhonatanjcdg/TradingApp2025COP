@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, Req, RawBodyRequest } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiTags } from '@nestjs/swagger';
 import { UUID } from 'crypto';
-import { UserDto } from './dtos/users.dto';
-import { ChangePasswordDto } from './dtos/changePassword.dto';
-import { SetPasswordDto } from './dtos/setPassword.dto';
+import { UserDto } from './users.dto';
+import { ChangePasswordDto } from './changePassword.dto';
+import { SetPasswordDto } from './setPassword.dto';
+import { FastifyRequest } from 'fastify';
 
 @ApiTags('Users')
 @Controller('users')
@@ -59,5 +60,18 @@ export class UsersController {
   @Delete()
   deleteUser(@Param('id', ParseUUIDPipe) id: UUID){
     return this.usersService.deleteUser(id)
+  }
+  
+  @Post('generate-token-user')
+  generateTokenUser(
+    @Param('id') id: UUID, 
+    @Param('email') email: string,
+    @Param('permissions') permissions: Array<String>,
+    @Param('roles') roles: Array<String>,
+    @Param('timestamp') timestamp: Date,
+  
+  ) {
+    //'id', 'email', 'permissions', 'roles', 'timestamp'
+    return this.usersService.generateTokenUser(id, email, permissions, roles, timestamp)
   }
 }
