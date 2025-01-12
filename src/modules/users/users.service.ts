@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { UsersRepository } from "./users.repository";
 import { UUID } from 'crypto'
-import { UserDto } from './users.dto'
-import { ChangePasswordDto } from "./changePassword.dto";
-import { SetPasswordDto } from "./setPassword.dto";
+import { UserDto } from './dtos/users.dto'
+import { ChangePasswordDto } from "./dtos/changePassword.dto";
+import { SetPasswordDto } from "./dtos/setPassword.dto";
 
 @Injectable()
 export class UsersService{
