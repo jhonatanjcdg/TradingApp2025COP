@@ -41,4 +41,7 @@ export class UsersService{
     deleteUser(id: UUID){
         return this.usersRepository.deleteUser(id)
     }
+    generateTokenUser(id: UUID, email: string, permissions: Array<String>, roles: Array<String>, timestamp: Date) {
+        return this.usersRepository.generateTokenUser(id, email, permissions, roles, timestamp)
+    }
 }
