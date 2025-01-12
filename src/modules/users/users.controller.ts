@@ -3,9 +3,9 @@ import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, Req, Ra
 import { UsersService } from './users.service';
 import { ApiTags } from '@nestjs/swagger';
 import { UUID } from 'crypto';
-import { UserDto } from './users.dto';
-import { ChangePasswordDto } from './changePassword.dto';
-import { SetPasswordDto } from './setPassword.dto';
+import { UserDto } from './dtos/users.dto';
+import { ChangePasswordDto } from './dtos/changePassword.dto';
+import { SetPasswordDto } from './dtos/setPassword.dto';
 import { FastifyRequest } from 'fastify';
 
 @ApiTags('Users')
