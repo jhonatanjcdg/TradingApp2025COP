@@ -182,4 +182,14 @@ export class UsersRepository {
       )
     }
   }
+  async generateTokenUser(id: UUID, email: String, permissions: Array<String>, roles: Array<String>, timestamp: Date) : Promise<String> {
+    try {
+       return 'Create token logic'
+    } catch(error) {
+      throw new HttpException(
+        `Error create token user`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      )
+    }
+  }
 }
