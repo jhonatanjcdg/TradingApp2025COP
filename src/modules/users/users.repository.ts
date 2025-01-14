@@ -4,10 +4,10 @@ import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { User } from './users.entity';
 import { DataSource, Repository } from 'typeorm';
-import { UserDto } from './users.dto';
+import { UserDto } from './dtos/users.dto';
 import * as bcrypt from 'bcrypt'
-import { ChangePasswordDto } from './changePassword.dto';
-import { SetPasswordDto } from './setPassword.dto';
+import { ChangePasswordDto } from './dtos/changePassword.dto';
+import { SetPasswordDto } from './dtos/setPassword.dto';
 
 @Injectable()
 export class UsersRepository {
@@ -179,6 +179,16 @@ export class UsersRepository {
       throw new HttpException(
         'Error deleting user',
         HttpStatus.INTERNAL_SERVER_ERROR
+      )
+    }
+  }
+  async generateTokenUser(id: UUID, email: String, permissions: Array<String>, roles: Array<String>, timestamp: Date) : Promise<String> {
+    try {
+       return 'Create token logic'
+    } catch(error) {
+      throw new HttpException(
+        `Error create token user`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
       )
     }
   }
