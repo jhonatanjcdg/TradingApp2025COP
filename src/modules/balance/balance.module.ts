@@ -10,4 +10,4 @@ import { BalanceController } from './balance.controller';
   providers: [BalanceRepository, BalanceService],
   controllers: [BalanceController],
 })
-export class UsersModule {}
+export class BalanceModule {}
