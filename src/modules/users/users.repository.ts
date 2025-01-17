@@ -47,7 +47,7 @@ export class UsersRepository {
   }
 
   async createUser(user: UserDto){
-    const newUser: User = await this.usersRepository.create(user)
+    const newUser: User = this.usersRepository.create(user)
     if(!newUser){
       throw new BadRequestException('Error creating user')
     }
