@@ -1,3 +1,4 @@
+import { CoinValueHistoricalModule } from './modules/coinValueHistorical/coinValueHistorical.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -21,6 +22,7 @@ import { CoinsModule } from './modules/coins/coins.module';
     UsersModule,
     BalanceModule,
     CoinsModule,
+    CoinValueHistoricalModule,
   ],
   controllers: [AppController],
   providers: [AppService],
